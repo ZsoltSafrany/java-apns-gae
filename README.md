@@ -4,11 +4,11 @@ java-apns-gae
 Java APNS library that works on Google App Engine.
 
 ```java
-PushNotification pushNotification = new PushNotification()
-  .setAlert("Please use our app - it's so awesome!")
-  .setBadge(1)
+new PushNotification()
+  .setAlert("You got your emails.")
+  .setBadge(9)
+  .setSound("bingbong.aiff")
   .setDeviceTokens("777d2ac490a17bb1d4c8a6ec7c50d4b1b9a36499acd45bf5fcac103cde038eff");
-pushNotificationService.send(pushNotification, apnsConnection);
 ```
 For documentation and additional information see the [the website][1].
 
@@ -52,5 +52,5 @@ License
     SOFTWARE.
 
 
- [1]: https://zsoltsafrany.github.io/needle
- [2]: http://repository.sonatype.org/service/local/artifact/maven/redirect?r=central-proxy&g=com.zsoltsafrany&a=needle&v=LATEST
+ [1]: https://zsoltsafrany.github.io/java-apns-gae
+ [2]: http://repository.sonatype.org/service/local/artifact/maven/redirect?r=central-proxy&g=com.zsoltsafrany&a=java-apns-gae&v=LATEST
