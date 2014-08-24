@@ -105,21 +105,20 @@ public class DefaultApnsConnectionFactory implements ApnsConnectionFactory {
     }
 
     @Override
-    public ApnsConnection openPushConnection() throws ApnsException {
+    public ApnsConnection openPushConnection() throws CannotOpenConnectionException {
         try {
             return new DefaultApnsConnection(mSSLContext.getSocketFactory().createSocket(mPushHost, mPushPort));
         } catch (IOException e) {
-            throw new ApnsException("Could not create socket", e);
+            throw new CannotOpenConnectionException("Could not create socket", e);
         }
     }
 
     @Override
-    public ApnsConnection openFeedbackConnection() throws ApnsException {
+    public ApnsConnection openFeedbackConnection() throws CannotOpenConnectionException {
         try {
             return new DefaultApnsConnection(mSSLContext.getSocketFactory().createSocket(mFeedbackHost, mFeedbackPort));
         } catch (IOException e) {
-            throw new ApnsException("Could not create socket", e);
+            throw new CannotOpenConnectionException("Could not create socket", e);
         }
     }
-
 }

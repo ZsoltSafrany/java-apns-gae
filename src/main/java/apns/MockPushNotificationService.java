@@ -8,7 +8,7 @@ public class MockPushNotificationService implements PushNotificationService {
     private Map<String, PushNotification> mSentPushPerDeviceToken = new HashMap<>();
 
     @Override
-    public void send(PushNotification pushNotification, ApnsConnection connection) throws ApnsException {
+    public void send(PushNotification pushNotification, ApnsConnection connection) {
         for (String deviceToken : pushNotification.getDeviceTokens()) {
             mSentPushPerDeviceToken.put(deviceToken.toLowerCase(), pushNotification);
         }

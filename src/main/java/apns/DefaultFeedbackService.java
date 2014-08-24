@@ -9,7 +9,7 @@ import java.util.List;
 
 public class DefaultFeedbackService implements FeedbackService {
 
-    public List<FailedDeviceToken> read(ApnsConnection connection) throws ApnsException {
+    public List<FailedDeviceToken> read(ApnsConnection connection) throws CannotUseConnectionException {
         if (connection == null) {
             throw new IllegalArgumentException("connection must not be null");
         }
@@ -19,13 +19,13 @@ public class DefaultFeedbackService implements FeedbackService {
         try {
             dis = new DataInputStream(connection.getSocket().getInputStream());
         } catch (IOException e) {
-            throw new ApnsException("Could not get input stream of socket", e);
+            throw new CannotUseConnectionException("Could not get input stream of socket", e);
         }
 
         try {
             readStream(dis, tokens);
         } catch (IOException e) {
-            throw new ApnsException("Could not read socket", e);
+            throw new CannotUseConnectionException("Could not read socket", e);
         }
         return tokens;
     }

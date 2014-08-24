@@ -9,7 +9,7 @@ public class MockFeedbackService implements FeedbackService {
     private List<FailedDeviceToken> mFailedDeviceTokens = new LinkedList<>();
 
     @Override
-    public List<FailedDeviceToken> read(ApnsConnection connection) throws ApnsException {
+    public List<FailedDeviceToken> read(ApnsConnection connection) {
         List<FailedDeviceToken> failedDeviceTokens = new ArrayList<>(mFailedDeviceTokens);
         mFailedDeviceTokens.clear();
         return failedDeviceTokens;

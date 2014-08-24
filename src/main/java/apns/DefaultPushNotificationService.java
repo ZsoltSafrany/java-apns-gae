@@ -29,7 +29,7 @@ public class DefaultPushNotificationService implements PushNotificationService {
     private static long sNextNotificationId;
 
     @Override
-    public void send(PushNotification pushNotification, ApnsConnection connection) throws ApnsException {
+    public void send(PushNotification pushNotification, ApnsConnection connection) throws CannotUseConnectionException, PayloadException {
         if (connection == null) {
             throw new ApnsRuntimeException("ApnsConnection must not be null");
         }
@@ -42,11 +42,11 @@ public class DefaultPushNotificationService implements PushNotificationService {
         send(pushNotification, connection.getSocket());
     }
 
-    private void send(PushNotification pn, Socket socket) throws ApnsException {
+    private void send(PushNotification pn, Socket socket) throws CannotUseConnectionException, PayloadException {
         try {
             send2(pn, socket);
         } catch (IOException e) {
-            throw new ApnsException("Could not send notification to APNS", e);
+            throw new CannotUseConnectionException("Could not send notification to APNS", e);
         }
     }
 

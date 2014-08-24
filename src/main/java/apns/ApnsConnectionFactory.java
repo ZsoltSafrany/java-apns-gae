@@ -2,8 +2,7 @@ package apns;
 
 public interface ApnsConnectionFactory {
 
-    ApnsConnection openPushConnection() throws ApnsException;
+    ApnsConnection openPushConnection() throws CannotOpenConnectionException;
 
-    ApnsConnection openFeedbackConnection() throws ApnsException;
-
+    ApnsConnection openFeedbackConnection() throws CannotOpenConnectionException;
 }

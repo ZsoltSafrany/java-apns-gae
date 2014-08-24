@@ -4,6 +4,6 @@ import java.util.List;
 
 public interface FeedbackService {
 
-    List<FailedDeviceToken> read(ApnsConnection connection) throws ApnsException;
+    List<FailedDeviceToken> read(ApnsConnection connection) throws CannotUseConnectionException;
 
 }
