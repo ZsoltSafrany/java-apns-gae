@@ -21,7 +21,7 @@ Download [the latest JAR][2] or grab via Maven:
 <dependency>
     <groupId>com.zsoltsafrany</groupId>
     <artifactId>java-apns-gae</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
 </dependency>
 ```
 
