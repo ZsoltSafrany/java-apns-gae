@@ -24,7 +24,7 @@ public class DefaultPushNotificationService implements PushNotificationService {
     private static final byte PRIORITY_IMMEDIATE = 10;
     private static final byte PRIORITY_BATTERY_SAVER = 5;
 
-    private static final int MAX_PAYLOAD_BYTES = 256;
+    private static final int MAX_PAYLOAD_BYTES = 2048;
 
     private static long sNextNotificationId;
 
