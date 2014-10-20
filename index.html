@@ -92,7 +92,7 @@
 
 <p>You should not include customer information (or any sensitive data) as custom payload data. </p>
 
-<p>Remember, that the maximum size allowed for a notification payload is 256 bytes. <code>PushNotificationService.send()</code> will throw a <code>PayloadException</code> when you try to pass a <code>PushNotification</code> that results in a payload that exceeds this limit.</p>
+<p>Remember, that the maximum size allowed for a notification payload is 2048 bytes. <code>PushNotificationService.send()</code> will throw a <code>PayloadException</code> when you try to pass a <code>PushNotification</code> that results in a payload that exceeds this limit.</p>
 
 <h2>
 <a name="send-a-push-notification" class="anchor" href="#send-a-push-notification"><span class="octicon octicon-link"></span></a>Send a push notification</h2>
@@ -456,7 +456,7 @@ The timeout must be &gt; 0. A timeout of zero is interpreted as an infinite time
 
 <p>Note, that every time a runtime exception escapes the <code>run()</code> method our task is considered as failed and will be retried by App Engine later (based on <code>retry-parameters</code> in queue.xml). </p>
 
-<p>You'll get a <code>PayloadException</code> if the payload is larger than 256 bytes. Note that we don't throw a runtime exception in this case to avoid the hot-potato anti-pattern (payload will be still too large the next time we retry).</p>
+<p>You'll get a <code>PayloadException</code> if the payload is larger than 2048 bytes. Note that we don't throw a runtime exception in this case to avoid the hot-potato anti-pattern (payload will be still too large the next time we retry).</p>
 
 <p>We create static members lazily because we don't want them to be created when we're just enqueuing a task.</p>
 
@@ -492,14 +492,14 @@ The timeout must be &gt; 0. A timeout of zero is interpreted as an infinite time
 <div class="highlight highlight-xml"><pre><span class="nt">&lt;dependency&gt;</span>
   <span class="nt">&lt;groupId&gt;</span>com.zsoltsafrany<span class="nt">&lt;/groupId&gt;</span>
   <span class="nt">&lt;artifactId&gt;</span>java-apns-gae<span class="nt">&lt;/artifactId&gt;</span>
-  <span class="nt">&lt;version&gt;</span>1.1.0<span class="nt">&lt;/version&gt;</span>
+  <span class="nt">&lt;version&gt;</span>1.2.0<span class="nt">&lt;/version&gt;</span>
 <span class="nt">&lt;/dependency&gt;</span>
 </pre></div>
 
 <h2>
 <a name="gradle" class="anchor" href="#gradle"><span class="octicon octicon-link"></span></a>Gradle</h2>
 
-<div class="highlight highlight-Groovy"><pre><span class="n">compile</span> <span class="s1">'com.zsoltsafrany:java-apns-gae:1.1.0'</span>
+<div class="highlight highlight-Groovy"><pre><span class="n">compile</span> <span class="s1">'com.zsoltsafrany:java-apns-gae:1.2.0'</span>
 </pre></div>
 
 <h1>
