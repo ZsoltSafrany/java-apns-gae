@@ -52,10 +52,15 @@ public class DefaultPushNotificationService implements PushNotificationService {
 
     private void send2(PushNotification pn, Socket socket) throws IOException, PayloadException {
         DataOutputStream dos = new DataOutputStream(socket.getOutputStream());
-        dos.writeByte(COMMAND_NOTIFICATION);
-        byte[] frameData = new FrameDataCreator(pn).create();
-        dos.writeInt(frameData.length);
-        dos.write(frameData);
+        final FrameDataCreator frameCreator = new FrameDataCreator(pn);
+        
+        for (String deviceToken : pn.getDeviceTokens()) {
+            byte[] frameData = frameCreator.create(deviceToken);
+        	dos.writeByte(COMMAND_NOTIFICATION);
+            dos.writeInt(frameData.length);
+            dos.write(frameData);
+        }
+        
         dos.flush();
     }
 
@@ -70,13 +75,11 @@ public class DefaultPushNotificationService implements PushNotificationService {
             mPushNotification = pushNotification;
         }
 
-        public byte[] create() throws IOException, PayloadException {
+        public byte[] create(String deviceToken) throws IOException, PayloadException {
             try (ByteArrayOutputStream baos = new ByteArrayOutputStream();
                  DataOutputStream dos = new DataOutputStream(baos)) {
 
-                for (String deviceToken : mPushNotification.getDeviceTokens()) {
-                    writeDeviceToken(dos, deviceToken);
-                }
+                writeDeviceToken(dos, deviceToken);
                 writePayload(dos);
                 writeNotificationId(dos);
                 writeExpirationDate(dos);
