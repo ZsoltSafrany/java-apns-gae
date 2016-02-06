@@ -15,6 +15,7 @@ public class DefaultPushNotificationServiceTest {
     public static final String KEY_BADGE = "badge";
     public static final String KEY_SOUND = "sound";
     public static final String KEY_CONTENT_AVAILABLE = "content-available";
+    public static final String KEY_CATEGORY = "category";
 
     public static final String KEY_BODY = "body";
     public static final String KEY_ACTION_LOC_KEY = "action-loc-key";
@@ -29,6 +30,7 @@ public class DefaultPushNotificationServiceTest {
     private static final String LOC_KEY = "loc_key_value";
     private static final String[] LOC_ARGS = {"a", "b", "c"};
     private static final String LAUNCH_IMAGE = "launch_image_value";
+    private static final String CATEGORY = "REQUEST_CATEGORY";
 
     public static final String KEY_CP = "cp";
     private static final String SOME_KEY_1 = "skey1";
@@ -52,6 +54,7 @@ public class DefaultPushNotificationServiceTest {
             Assert.assertNull(aps.opt(KEY_BADGE));
             Assert.assertNull(aps.opt(KEY_SOUND));
             Assert.assertNull(aps.opt(KEY_CONTENT_AVAILABLE));
+            Assert.assertNull(aps.opt(KEY_CATEGORY));
         }
 
         // --
@@ -68,7 +71,7 @@ public class DefaultPushNotificationServiceTest {
 
         // --
         {
-            PushNotification pn = new PushNotification().setBadge(BADGE).setContentAvailable(true);
+            PushNotification pn = new PushNotification().setBadge(BADGE).setContentAvailable(true).setCategory(CATEGORY);
             JSONObject json = createPayloadJson(pn);
 
             JSONObject aps = json.getJSONObject(KEY_APS);
@@ -76,6 +79,7 @@ public class DefaultPushNotificationServiceTest {
             Assert.assertNull(aps.opt(KEY_ALERT));
             Assert.assertNull(aps.opt(KEY_SOUND));
             Assert.assertEquals(1, aps.getInt(KEY_CONTENT_AVAILABLE));
+            Assert.assertEquals(CATEGORY, aps.getString(KEY_CATEGORY));
         }
 
         // --

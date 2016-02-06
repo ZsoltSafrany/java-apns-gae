@@ -170,6 +170,9 @@ public class DefaultPushNotificationService implements PushNotificationService {
             } else if (pn.getComplexAlert() != null) {
                 dict.put("alert", createAlertDict(pn.getComplexAlert()));
             }
+            if (pn.getCategory() != null) {
+                dict.put("category", pn.getCategory());
+            }
             jo.put("aps", dict);
         }
 

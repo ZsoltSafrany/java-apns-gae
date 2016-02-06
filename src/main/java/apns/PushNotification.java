@@ -16,6 +16,7 @@ public class PushNotification implements Serializable {
     private String mSound;
     private boolean mContentAvailable;
     private Collection<String> mDeviceTokens;
+    private String mCategory;
     private Map<String, Object> mCustomPayload = new HashMap<>();
 
     public Integer getBadge() {
@@ -74,6 +75,15 @@ public class PushNotification implements Serializable {
 
     public PushNotification setContentAvailable(boolean available) {
         mContentAvailable = available;
+        return this;
+    }
+    
+    public String getCategory() {
+        return mCategory;
+    }
+
+    public PushNotification setCategory(String category) {
+        mCategory = category;
         return this;
     }
 
